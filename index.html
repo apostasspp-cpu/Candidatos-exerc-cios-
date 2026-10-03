@@ -20,8 +20,8 @@ body.dark{--primary:#1b8a5b;--primary-light:#24a56e;--primary-dark:#0f5c3b;--acc
 --shadow-sm:0 1px 2px rgba(0,0,0,.3);--shadow-md:0 4px 12px rgba(0,0,0,.35);--shadow-lg:0 12px 32px rgba(0,0,0,.45)}
 html{font-size:calc(16px * var(--font-scale))}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased;transition:.25s}
-button,input,select{font:inherit;color:inherit}button{cursor:pointer;border:0;background:none}
-button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer;border:0;background:none}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
 header{background:var(--header-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 20px;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm)}
 .header-inner{max-width:1080px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:16px}
 .brand{display:flex;align-items:center;gap:14px;min-width:0}.brand-emblem{width:46px;height:46px;flex-shrink:0;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;box-shadow:0 4px 10px rgba(11,93,59,.28);border:2px solid var(--accent)}
@@ -91,11 +91,11 @@ input::placeholder{color:var(--muted);opacity:.75}input:focus,select:focus{borde
 .admin-payment-settings .save-btn:hover{background:var(--primary-dark)}
 .admin-toolbar{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}.admin-search{flex:1;min-width:200px;padding:10px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--card);color:var(--text);outline:none;font-size:.9rem}.admin-filter{padding:10px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--card);color:var(--text);font-size:.9rem;font-weight:600}
 .user-list{display:flex;flex-direction:column;gap:10px}.user-row{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:14px 16px;background:var(--answer-bg);border:1px solid var(--border);border-radius:var(--radius-md);flex-wrap:wrap}.user-row-main{display:flex;align-items:center;gap:12px;min-width:0;flex:1}.user-row-info{min-width:0}.user-row-name{font-weight:700;font-size:.92rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.user-row-meta{font-size:.75rem;color:var(--muted);margin-top:3px;word-break:break-word}.user-row-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.status-pill{display:inline-block;padding:3px 9px;border-radius:20px;font-size:.68rem;font-weight:800;text-transform:uppercase;white-space:nowrap}.status-pill.free{background:rgba(107,114,128,.15);color:var(--muted)}.status-pill.pending{background:rgba(178,106,0,.15);color:var(--warning)}.status-pill.paid{background:rgba(26,122,60,.15);color:var(--success)}.status-pill.rejected{background:rgba(179,38,30,.15);color:var(--danger)}
-.mini-btn{border:1.5px solid var(--border-strong);background:var(--card);color:var(--text-soft);padding:6px 11px;border-radius:var(--radius-sm);font-size:.72rem;font-weight:700}.mini-btn.approve{border-color:var(--success);color:var(--success)}.mini-btn.approve:hover{background:var(--success);color:#fff}.mini-btn.reject{border-color:var(--danger);color:var(--danger)}.mini-btn.reject:hover{background:var(--danger);color:#fff}.mini-btn.revoke{border-color:var(--warning);color:var(--warning)}.mini-btn.revoke:hover{background:var(--warning);color:#fff}.mini-btn.delete{border-color:var(--danger);color:var(--danger)}.mini-btn.delete:hover{background:var(--danger);color:#fff}
+.mini-btn{border:1.5px solid var(--border-strong);background:var(--card);color:var(--text-soft);padding:6px 11px;border-radius:var(--radius-sm);font-size:.72rem;font-weight:700}.mini-btn.approve{border-color:var(--success);color:var(--success)}.mini-btn.approve:hover{background:var(--success);color:#fff}.mini-btn.reject{border-color:var(--danger);color:var(--danger)}.mini-btn.reject:hover{background:var(--danger);color:#fff}.mini-btn.revoke{border-color:var(--warning);color:var(--warning)}.mini-btn.revoke:hover{background:var(--warning);color:#fff}.mini-btn.delete{border-color:var(--danger);color:var(--danger)}.mini-btn.delete:hover{background:var(--danger);color:#fff}.mini-btn.chat{border-color:var(--primary);color:var(--primary)}.mini-btn.chat:hover{background:var(--primary);color:#fff}
 .empty-state{text-align:center;padding:40px 20px;color:var(--muted)}.empty-state .icon{font-size:40px;display:block;margin-bottom:12px}
 .modal-overlay{position:fixed;inset:0;background:rgba(10,15,20,.6);backdrop-filter:blur(4px);display:none;justify-content:center;align-items:center;padding:20px;z-index:1000;overflow-y:auto}.modal-overlay.show{display:flex}.modal{background:var(--card);border-radius:var(--radius-lg);padding:28px;max-width:460px;width:100%;box-shadow:var(--shadow-lg);border:1px solid var(--border);max-height:92vh;overflow-y:auto}.modal h3{font-size:1.15rem;margin-bottom:10px}.modal p{color:var(--text-soft);font-size:.88rem;margin-bottom:16px}.modal .field{margin-bottom:14px}.modal .field label{display:block;font-size:.82rem;font-weight:700;margin-bottom:6px}.modal .field input,.modal .field select,.modal .field textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--card);color:var(--text);font-size:.9rem;outline:none}
 .modal-actions{display:flex;gap:10px;margin-top:20px}.modal-actions button{flex:1;padding:12px;border-radius:var(--radius-sm);font-weight:700;font-size:.85rem;transition:.18s}.modal-actions .cancel{background:transparent;border:1.5px solid var(--border-strong);color:var(--text-soft)}.modal-actions .cancel:hover{background:var(--bg-alt)}.modal-actions .confirm{background:var(--success);color:#fff;border:1.5px solid var(--success)}.modal-actions .confirm:hover{background:#145c2d}.modal-actions .reject{background:var(--danger);color:#fff;border:1.5px solid var(--danger)}.modal-actions .reject:hover{background:#7a1813}.modal-actions .ok{background:var(--primary);color:#fff;border:1.5px solid var(--primary)}.modal-actions .ok:hover{background:var(--primary-dark)}
-.toast{position:fixed;bottom:24px;right:24px;background:var(--card);color:var(--text);padding:14px 18px;border-radius:var(--radius-md);box-shadow:var(--shadow-lg);border-left:4px solid var(--primary);font-size:.88rem;font-weight:600;z-index:2000;max-width:360px;transform:translateY(20px);opacity:0;pointer-events:none;transition:.3s}.toast.show{transform:translateY(0);opacity:1}.toast.success{border-left-color:var(--success)}.toast.error{border-left-color:var(--danger)}.toast.warning{border-left-color:var(--warning)}
+.toast{position:fixed;bottom:100px;right:24px;background:var(--card);color:var(--text);padding:14px 18px;border-radius:var(--radius-md);box-shadow:var(--shadow-lg);border-left:4px solid var(--primary);font-size:.88rem;font-weight:600;z-index:2000;max-width:360px;transform:translateY(20px);opacity:0;pointer-events:none;transition:.3s}.toast.show{transform:translateY(0);opacity:1}.toast.success{border-left-color:var(--success)}.toast.error{border-left-color:var(--danger)}.toast.warning{border-left-color:var(--warning)}
 .result-payment-box{background:linear-gradient(135deg,rgba(11,93,59,.08),rgba(201,162,39,.12));border:2px dashed var(--accent);border-radius:var(--radius-md);padding:20px;margin:20px 0;text-align:left}.result-payment-box h3{font-size:1.05rem;margin-bottom:10px;color:var(--primary)}.result-payment-box p{font-size:.88rem;color:var(--text-soft);margin-bottom:10px;line-height:1.5}.result-payment-box .remaining{font-weight:800;color:var(--accent-dark);background:rgba(201,162,39,.15);padding:2px 8px;border-radius:6px}
 .restart-warning{background:rgba(201,162,39,.12);border:1px solid rgba(201,162,39,.35);border-left:4px solid var(--accent);border-radius:var(--radius-sm);padding:12px 14px;font-size:.85rem;color:var(--text-soft);margin-bottom:14px;line-height:1.5}
 .pay-email-btn{background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#1a1a1a;font-weight:800;padding:14px 18px;border-radius:var(--radius-sm);width:100%;font-size:.9rem;letter-spacing:.4px;display:flex;align-items:center;justify-content:center;gap:8px;transition:.2s;box-shadow:0 4px 12px rgba(201,162,39,.35);margin-top:14px}
@@ -110,8 +110,67 @@ input::placeholder{color:var(--muted);opacity:.75}input:focus,select:focus{borde
 .fb-loading.show{display:flex}
 .fb-loading .spinner{width:44px;height:44px;border:4px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* ================= CHAT ================= */
+.chat-fab{position:fixed;bottom:24px;right:24px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;font-size:26px;display:none;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(11,93,59,.4);z-index:1500;transition:.2s;border:3px solid var(--card);line-height:1}
+.chat-fab:hover{transform:scale(1.08)}
+.chat-fab .chat-badge{position:absolute;top:-4px;right:-4px;background:var(--danger);color:#fff;border-radius:12px;min-width:22px;height:22px;padding:0 6px;font-size:.7rem;font-weight:800;display:none;align-items:center;justify-content:center;border:2px solid var(--card)}
+
+.chat-panel{position:fixed;bottom:96px;right:24px;width:380px;max-width:calc(100vw - 32px);height:520px;max-height:calc(100vh - 140px);background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);display:none;flex-direction:column;z-index:1600;overflow:hidden}
+.chat-panel.show{display:flex}
+.chat-header{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.chat-header-info{display:flex;align-items:center;gap:10px;min-width:0}
+.chat-header-avatar{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.chat-header h4{font-size:.95rem;font-weight:700;line-height:1.2}
+.chat-header p{font-size:.72rem;opacity:.85;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chat-close{color:#fff;font-size:1.2rem;padding:4px 10px;border-radius:6px;line-height:1}
+.chat-close:hover{background:rgba(255,255,255,.15)}
+.chat-messages{flex:1;overflow-y:auto;padding:16px;background:var(--bg);display:flex;flex-direction:column;gap:10px}
+.chat-empty{text-align:center;color:var(--muted);padding:30px 20px;font-size:.85rem;line-height:1.6}
+.chat-msg{max-width:82%;padding:9px 13px;border-radius:14px;font-size:.88rem;line-height:1.4;word-wrap:break-word;white-space:pre-wrap;position:relative;animation:chatIn .2s ease}
+@keyframes chatIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.chat-msg.out{align-self:flex-end;background:var(--primary);color:#fff;border-bottom-right-radius:4px}
+.chat-msg.in{align-self:flex-start;background:var(--card);color:var(--text);border:1px solid var(--border);border-bottom-left-radius:4px}
+.chat-msg-time{font-size:.62rem;opacity:.75;margin-top:4px;display:block;text-align:right}
+.chat-input-area{display:flex;gap:8px;padding:12px;border-top:1px solid var(--border);background:var(--card);flex-shrink:0;align-items:flex-end}
+.chat-input-area textarea{flex:1;resize:none;padding:10px 14px;border:1.5px solid var(--border);border-radius:20px;background:var(--answer-bg);color:var(--text);font-size:.88rem;font-family:inherit;outline:none;max-height:90px;min-height:40px;line-height:1.4}
+.chat-input-area textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(11,93,59,.12)}
+.chat-send-btn{background:var(--primary);color:#fff;border-radius:50%;width:42px;height:42px;flex-shrink:0;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:.2s}
+.chat-send-btn:hover{background:var(--primary-dark);transform:scale(1.05)}
+.chat-send-btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* Admin tabs */
+.admin-tabs{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;border-bottom:2px solid var(--border)}
+.admin-tab{padding:11px 18px;font-weight:700;font-size:.85rem;color:var(--text-soft);border-bottom:3px solid transparent;margin-bottom:-2px;transition:.18s;display:inline-flex;align-items:center;gap:8px}
+.admin-tab:hover{color:var(--primary)}
+.admin-tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+
+/* Admin conversations layout */
+.chat-layout{display:grid;grid-template-columns:300px 1fr;gap:14px;min-height:520px}
+.conv-list{background:var(--answer-bg);border:1px solid var(--border);border-radius:var(--radius-md);overflow-y:auto;max-height:620px}
+.conv-item{padding:12px 14px;border-bottom:1px solid var(--border);cursor:pointer;transition:.15s;display:flex;gap:10px;align-items:center}
+.conv-item:last-child{border-bottom:0}
+.conv-item:hover{background:var(--answer-hover)}
+.conv-item.active{background:rgba(11,93,59,.1);box-shadow:inset 3px 0 0 var(--primary)}
+.conv-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;font-size:.95rem}
+.conv-info{flex:1;min-width:0}
+.conv-name{font-weight:700;font-size:.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.conv-last{font-size:.72rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.conv-badge{background:var(--danger);color:#fff;border-radius:12px;min-width:22px;height:22px;padding:0 7px;font-size:.7rem;font-weight:800;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.conv-chat-area{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-md);display:flex;flex-direction:column;overflow:hidden;max-height:620px;min-height:400px}
+.conv-empty{display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:.9rem;flex-direction:column;gap:8px;padding:40px;text-align:center;flex:1}
+.conv-empty .icon{font-size:44px}
+
+@media(max-width:900px){
+.chat-layout{grid-template-columns:1fr}
+.conv-list{max-height:220px}
+.conv-chat-area{max-height:520px}
+}
 @media(max-width:700px){.brand h1{font-size:.82rem}.brand p{font-size:.65rem}.brand-emblem{width:38px;height:38px;font-size:18px}.header-controls button{padding:7px 9px}}
-@media(max-width:560px){.container{margin:18px auto;padding:0 12px 40px}.card{padding:24px 18px;border-radius:var(--radius-md)}.auth-card{margin:18px auto}.top-info{grid-template-columns:1fr auto;gap:10px}.timer{grid-column:1/-1;justify-self:stretch}.question{font-size:1.1rem}.result-stats{grid-template-columns:1fr}.final-score{font-size:2.4rem}.user-bar{padding:11px 14px}.user-row{flex-direction:column;align-items:stretch}.user-row-actions{justify-content:flex-start}.category-box{grid-template-columns:1fr}.toast{left:16px;right:16px;bottom:16px;max-width:none}.modal{padding:20px}.modal-actions{flex-direction:column}}
+@media(max-width:560px){.container{margin:18px auto;padding:0 12px 40px}.card{padding:24px 18px;border-radius:var(--radius-md)}.auth-card{margin:18px auto}.top-info{grid-template-columns:1fr auto;gap:10px}.timer{grid-column:1/-1;justify-self:stretch}.question{font-size:1.1rem}.result-stats{grid-template-columns:1fr}.final-score{font-size:2.4rem}.user-bar{padding:11px 14px}.user-row{flex-direction:column;align-items:stretch}.user-row-actions{justify-content:flex-start}.category-box{grid-template-columns:1fr}.toast{left:16px;right:16px;bottom:96px;max-width:none}.modal{padding:20px}.modal-actions{flex-direction:column}
+.chat-panel{right:12px;left:12px;bottom:90px;width:auto;height:calc(100vh - 120px);max-height:none}
+.chat-fab{bottom:18px;right:18px;width:54px;height:54px;font-size:22px}
+}
 </style>
 </head>
 <body>
@@ -204,6 +263,13 @@ input::placeholder{color:var(--muted);opacity:.75}input:focus,select:focus{borde
 <button class="logout-btn" onclick="logout()">SAIR</button>
 </div>
 </div>
+
+<div class="admin-tabs">
+<button class="admin-tab active" id="adminTabUsers" onclick="switchAdminTab('users')">👥 Utilizadores</button>
+<button class="admin-tab" id="adminTabChat" onclick="switchAdminTab('chat')">💬 Chat / Suporte <span id="adminChatTabBadge" class="conv-badge" style="display:none">0</span></button>
+</div>
+
+<div id="adminUsersView">
 <div class="admin-stats" id="adminStats"></div>
 
 <div class="admin-payment-settings">
@@ -219,8 +285,41 @@ input::placeholder{color:var(--muted);opacity:.75}input:focus,select:focus{borde
 
 <div class="admin-toolbar"><input type="text" class="admin-search" id="adminSearch" placeholder="🔍 Pesquisar por nome, e-mail ou telefone..." oninput="renderUserList()"><select class="admin-filter" id="adminFilter" onchange="renderUserList()"><option value="all">Todos os utilizadores</option><option value="pending">Pagamentos pendentes</option><option value="paid">Pagamentos aprovados</option><option value="rejected">Pagamentos reprovados</option><option value="free">Acesso gratuito</option></select></div>
 <div class="user-list" id="userList"></div>
+</div>
+
+<div id="adminChatView" style="display:none">
+<div class="chat-layout">
+<div class="conv-list" id="convList"></div>
+<div class="conv-chat-area" id="convChatArea">
+<div class="conv-empty"><span class="icon">💬</span>Selecione uma conversa para responder</div>
+</div>
+</div>
+</div>
+
 </div></div>
 </main>
+
+<!-- FAB do chat (utilizador) -->
+<button class="chat-fab" id="chatFab" onclick="toggleUserChat()" title="Falar com o suporte">💬<span class="chat-badge" id="userChatBadge" style="display:none">0</span></button>
+
+<!-- Painel de chat do utilizador -->
+<div class="chat-panel" id="userChatPanel">
+<div class="chat-header">
+<div class="chat-header-info">
+<div class="chat-header-avatar">🎧</div>
+<div>
+<h4>Suporte</h4>
+<p>Estamos aqui para ajudar</p>
+</div>
+</div>
+<button class="chat-close" onclick="toggleUserChat()">✕</button>
+</div>
+<div class="chat-messages" id="userChatMessages"></div>
+<div class="chat-input-area">
+<textarea id="userChatInput" placeholder="Escreva a sua mensagem..." rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendUserChatMessage()}"></textarea>
+<button class="chat-send-btn" onclick="sendUserChatMessage()">➤</button>
+</div>
+</div>
 
 <!-- Modal: Admin confirmar/reprovar pagamento -->
 <div class="modal-overlay" id="paymentModal"><div class="modal">
@@ -277,16 +376,14 @@ const firebaseConfig = {
   measurementId: "G-SHBEVY665L"
 };
 
-/* Estado global do Firebase */
 let _db = null;
 let _usersCache = [];
 let _paymentSettingsCache = { iban: "", paypayEntity: "", paypayRef: "" };
 let _firebaseReady = false;
 let _firebaseError = null;
+let _chatsCache = {};
+let _currentConvUserId = null;
 
-/* ============================================================
-   CONSTANTES DA APLICAÇÃO
-   ============================================================ */
 const ADMIN_PHONE="949097324",ADMIN_PASSWORD="199319931993",PRICE_KZ=2000,FREE_QUESTION_LIMIT=13,QUIZ_TIME=90;
 const PROOF_EMAIL="apostasspp@gmail.com";
 const STORAGE_KEYS={
@@ -496,9 +593,6 @@ const cultureQuestions=[
 const makeQuestions=(arr,category)=>arr.map(([question,answer])=>({question,answer,category}));
 const questionBanks={police:makeQuestions(policeQuestions,"Polícia Nacional"),culture:makeQuestions(cultureQuestions,"Cultura Geral de Angola")};
 
-/* ============================================================
-   PERGUNTAS FIXAS GRATUITAS (7 Polícia Nacional + 6 Cultura Geral)
-   ============================================================ */
 const fq=(question,answer,category)=>({question,answer,category});
 const FIXED_FREE_QUESTIONS=[
 fq("Qual é a missão principal da Polícia Nacional?","Garantir a legalidade democrática, a ordem e tranquilidade públicas, a segurança dos cidadãos, a protecção de pessoas e bens, a prevenção e o combate à criminalidade.","Polícia Nacional"),
@@ -519,7 +613,7 @@ fq("Quais são algumas das principais responsabilidades da Polícia Nacional?","
 let selectedCategory="police",quizQuestions=[],currentQuestion=0,score=0,correctAnswers=0,wrongAnswers=0,timeLeft=QUIZ_TIME,timerInterval=null,answered=false,pendingPaymentUserId=null;
 
 /* ============================================================
-   FIREBASE — INICIALIZAÇÃO E LISTENERS
+   FIREBASE
    ============================================================ */
 async function initFirebase(){
   if(typeof firebase==="undefined"){
@@ -530,21 +624,17 @@ async function initFirebase(){
   try{
     firebase.initializeApp(firebaseConfig);
     _db=firebase.database();
-    try{ firebase.analytics(); }catch(e){ /* Analytics opcional */ }
+    try{ firebase.analytics(); }catch(e){}
 
-    // Carrega dados iniciais
     const [usersSnap,settingsSnap]=await Promise.all([
       _db.ref("users").get(),
       _db.ref("paymentSettings").get()
     ]);
-    const usersVal=usersSnap.val()||{};
-    _usersCache=Object.values(usersVal);
+    _usersCache=Object.values(usersSnap.val()||{});
     _paymentSettingsCache=settingsSnap.val()||{iban:"",paypayEntity:"",paypayRef:""};
 
-    // Listeners em tempo real
     _db.ref("users").on("value",snap=>{
-      const val=snap.val()||{};
-      _usersCache=Object.values(val);
+      _usersCache=Object.values(snap.val()||{});
       onUsersChanged();
     },err=>console.error("Listener users erro:",err));
 
@@ -552,6 +642,12 @@ async function initFirebase(){
       _paymentSettingsCache=snap.val()||{iban:"",paypayEntity:"",paypayRef:""};
       onSettingsChanged();
     },err=>console.error("Listener settings erro:",err));
+
+    // Chat listener
+    _db.ref("chats").on("value",snap=>{
+      _chatsCache=snap.val()||{};
+      onChatsChanged();
+    },err=>console.error("Listener chats erro:",err));
 
     _firebaseReady=true;
     console.log("Firebase inicializado com sucesso.");
@@ -590,7 +686,290 @@ function onSettingsChanged(){
 }
 
 /* ============================================================
-   CAMADA DE DADOS (substitui localStorage por Firebase)
+   CHAT / SUPORTE
+   ============================================================ */
+function onChatsChanged(){
+  try{
+    const u=getCurrentUser();
+    if(u&&u.role!=="admin"){ updateUserChatUI(); }
+    if(document.getElementById("adminScreen").style.display!=="none"){
+      renderConversationList();
+      if(_currentConvUserId) renderAdminConversation(_currentConvUserId);
+      updateAdminChatBadge();
+    }
+  }catch(e){console.error(e);}
+}
+
+function formatChatTime(ts){
+  if(!ts)return"";
+  const d=new Date(ts),now=new Date();
+  if(d.toDateString()===now.toDateString()){
+    return d.toLocaleTimeString("pt-PT",{hour:"2-digit",minute:"2-digit"});
+  }
+  return d.toLocaleDateString("pt-PT")+" "+d.toLocaleTimeString("pt-PT",{hour:"2-digit",minute:"2-digit"});
+}
+
+async function ensureChatMeta(user){
+  if(!_db||!user)return;
+  try{
+    const ref=_db.ref("chats/"+user.id+"/meta");
+    const snap=await ref.get();
+    const data={
+      userName:user.name||"Utilizador",
+      userPhone:user.phone||"",
+      userEmail:user.email||""
+    };
+    if(!snap.exists()){
+      await ref.set({
+        ...data,
+        lastMessage:"",
+        lastTimestamp:Date.now(),
+        unreadByAdmin:0,
+        unreadByUser:0
+      });
+    }else{
+      await ref.update(data);
+    }
+  }catch(e){console.error(e);}
+}
+
+async function sendChatMessage(userId,from,text){
+  if(!_db||!text||!text.trim())return;
+  const clean=text.trim();
+  const msgId="m_"+Date.now()+"_"+Math.random().toString(36).slice(2,7);
+  const msg={from,text:clean,timestamp:Date.now()};
+  try{
+    await _db.ref("chats/"+userId+"/messages/"+msgId).set(msg);
+    const cur=(_chatsCache[userId]&&_chatsCache[userId].meta)||{};
+    const updates={
+      lastMessage:clean.slice(0,80),
+      lastTimestamp:msg.timestamp
+    };
+    if(from==="user"){
+      updates.unreadByAdmin=(cur.unreadByAdmin||0)+1;
+      updates.unreadByUser=0;
+    }else{
+      updates.unreadByUser=(cur.unreadByUser||0)+1;
+      updates.unreadByAdmin=0;
+    }
+    await _db.ref("chats/"+userId+"/meta").update(updates);
+  }catch(e){
+    console.error(e);
+    showToast("Erro ao enviar mensagem.","error");
+  }
+}
+
+/* ---- USER SIDE ---- */
+function toggleUserChat(){
+  const p=document.getElementById("userChatPanel");
+  if(p.classList.contains("show")){
+    p.classList.remove("show");
+  }else{
+    p.classList.add("show");
+    openUserChat();
+  }
+}
+
+async function openUserChat(){
+  const u=getCurrentUser();
+  if(!u||u.role==="admin")return;
+  await ensureChatMeta(u);
+  await markUserChatRead();
+  renderUserChatMessages();
+  setTimeout(()=>{const el=document.getElementById("userChatInput");if(el)el.focus();},120);
+}
+
+async function markUserChatRead(){
+  const u=getCurrentUser();
+  if(!u||!_db)return;
+  const meta=_chatsCache[u.id]&&_chatsCache[u.id].meta;
+  if(meta&&(meta.unreadByUser||0)>0){
+    try{ await _db.ref("chats/"+u.id+"/meta/unreadByUser").set(0); }catch(e){}
+  }
+}
+
+function renderUserChatMessages(){
+  const u=getCurrentUser();
+  if(!u)return;
+  const box=document.getElementById("userChatMessages");
+  if(!box)return;
+  const chat=_chatsCache[u.id];
+  const messages=chat&&chat.messages?Object.values(chat.messages).sort((a,b)=>a.timestamp-b.timestamp):[];
+  if(!messages.length){
+    box.innerHTML=`<div class="chat-empty">👋 Olá! Bem-vindo ao suporte.<br>Envie a sua primeira mensagem e a nossa equipa responderá em breve.</div>`;
+    return;
+  }
+  box.innerHTML=messages.map(m=>{
+    const cls=m.from==="user"?"out":"in";
+    return `<div class="chat-msg ${cls}">${escapeHtml(m.text)}<span class="chat-msg-time">${formatChatTime(m.timestamp)}</span></div>`;
+  }).join("");
+  box.scrollTop=box.scrollHeight;
+}
+
+async function sendUserChatMessage(){
+  const u=getCurrentUser();
+  if(!u||u.role==="admin")return;
+  const input=document.getElementById("userChatInput");
+  const text=(input.value||"").trim();
+  if(!text)return;
+  input.value="";
+  await sendChatMessage(u.id,"user",text);
+}
+
+function updateUserChatUI(){
+  const u=getCurrentUser();
+  const fab=document.getElementById("chatFab");
+  const panel=document.getElementById("userChatPanel");
+  if(!u||u.role==="admin"){
+    if(fab)fab.style.display="none";
+    if(panel)panel.classList.remove("show");
+    return;
+  }
+  if(fab)fab.style.display="flex";
+  const chat=_chatsCache[u.id];
+  const unread=chat&&chat.meta?(chat.meta.unreadByUser||0):0;
+  const badge=document.getElementById("userChatBadge");
+  if(badge){
+    if(unread>0){badge.textContent=unread>9?"9+":unread;badge.style.display="flex";}
+    else badge.style.display="none";
+  }
+  if(panel&&panel.classList.contains("show")){
+    renderUserChatMessages();
+    markUserChatRead();
+  }
+}
+
+/* ---- ADMIN SIDE ---- */
+function switchAdminTab(tab){
+  const usersView=document.getElementById("adminUsersView");
+  const chatView=document.getElementById("adminChatView");
+  const tabU=document.getElementById("adminTabUsers");
+  const tabC=document.getElementById("adminTabChat");
+  if(!usersView||!chatView)return;
+  if(tab==="users"){
+    usersView.style.display="";
+    chatView.style.display="none";
+    tabU.classList.add("active");
+    tabC.classList.remove("active");
+  }else{
+    usersView.style.display="none";
+    chatView.style.display="block";
+    tabU.classList.remove("active");
+    tabC.classList.add("active");
+    renderConversationList();
+    if(_currentConvUserId)renderAdminConversation(_currentConvUserId);
+  }
+}
+
+function renderConversationList(){
+  const list=document.getElementById("convList");
+  if(!list)return;
+  const entries=Object.entries(_chatsCache)
+    .map(([uid,c])=>({uid,meta:(c&&c.meta)||{},messages:(c&&c.messages)||{}}))
+    .filter(x=>Object.keys(x.messages).length>0||(x.meta&&x.meta.lastMessage))
+    .sort((a,b)=>((b.meta.lastTimestamp||0)-(a.meta.lastTimestamp||0)));
+  if(!entries.length){
+    list.innerHTML=`<div class="empty-state" style="padding:30px 16px"><span class="icon">💬</span>Sem conversas ainda</div>`;
+    return;
+  }
+  list.innerHTML=entries.map(e=>{
+    const initial=(e.meta.userName||"U").trim().charAt(0).toUpperCase();
+    const unread=e.meta.unreadByAdmin||0;
+    const active=_currentConvUserId===e.uid?"active":"";
+    return `<div class="conv-item ${active}" onclick="selectConversation('${e.uid}')">
+      <div class="conv-avatar">${escapeHtml(initial)}</div>
+      <div class="conv-info">
+        <div class="conv-name">${escapeHtml(e.meta.userName||"Utilizador")}</div>
+        <div class="conv-last">${escapeHtml(e.meta.lastMessage||"Sem mensagens")}</div>
+      </div>
+      ${unread>0?`<span class="conv-badge">${unread>9?"9+":unread}</span>`:""}
+    </div>`;
+  }).join("");
+}
+
+function selectConversation(uid){
+  _currentConvUserId=uid;
+  renderConversationList();
+  renderAdminConversation(uid);
+  markAdminConversationRead(uid);
+}
+
+async function markAdminConversationRead(uid){
+  if(!_db)return;
+  const meta=_chatsCache[uid]&&_chatsCache[uid].meta;
+  if(meta&&(meta.unreadByAdmin||0)>0){
+    try{ await _db.ref("chats/"+uid+"/meta/unreadByAdmin").set(0); }catch(e){}
+  }
+}
+
+function renderAdminConversation(uid){
+  const area=document.getElementById("convChatArea");
+  if(!area)return;
+  const chat=_chatsCache[uid];
+  if(!chat){
+    area.innerHTML=`<div class="conv-empty"><span class="icon">💬</span>Conversa não encontrada</div>`;
+    return;
+  }
+  const meta=chat.meta||{};
+  const messages=chat.messages?Object.values(chat.messages).sort((a,b)=>a.timestamp-b.timestamp):[];
+  const msgHtml=messages.length
+    ? messages.map(m=>{
+        // Perspective flip: from admin POV, user msgs are incoming (in), admin msgs outgoing (out)
+        const cls=m.from==="admin"?"out":"in";
+        return `<div class="chat-msg ${cls}">${escapeHtml(m.text)}<span class="chat-msg-time">${formatChatTime(m.timestamp)}</span></div>`;
+      }).join("")
+    : `<div class="chat-empty">Sem mensagens nesta conversa.</div>`;
+  const initial=(meta.userName||"U").trim().charAt(0).toUpperCase();
+  area.innerHTML=`
+    <div class="chat-header" style="border-radius:0">
+      <div class="chat-header-info">
+        <div class="chat-header-avatar">${escapeHtml(initial)}</div>
+        <div>
+          <h4>${escapeHtml(meta.userName||"Utilizador")}</h4>
+          <p>${escapeHtml(meta.userPhone||"")}${meta.userEmail?" · "+escapeHtml(meta.userEmail):""}</p>
+        </div>
+      </div>
+    </div>
+    <div class="chat-messages" id="adminChatMessages">${msgHtml}</div>
+    <div class="chat-input-area">
+      <textarea id="adminChatInput" placeholder="Escreva a resposta..." rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendAdminChatMessage()}"></textarea>
+      <button class="chat-send-btn" onclick="sendAdminChatMessage()">➤</button>
+    </div>
+  `;
+  const m=document.getElementById("adminChatMessages");
+  if(m)m.scrollTop=m.scrollHeight;
+  const inp=document.getElementById("adminChatInput");
+  if(inp)inp.focus();
+}
+
+async function sendAdminChatMessage(){
+  const u=getCurrentUser();
+  if(!u||u.role!=="admin"||!_currentConvUserId)return;
+  const input=document.getElementById("adminChatInput");
+  if(!input)return;
+  const text=(input.value||"").trim();
+  if(!text)return;
+  input.value="";
+  await sendChatMessage(_currentConvUserId,"admin",text);
+}
+
+function updateAdminChatBadge(){
+  const badge=document.getElementById("adminChatTabBadge");
+  if(!badge)return;
+  let total=0;
+  Object.values(_chatsCache).forEach(c=>{
+    if(c&&c.meta)total+=(c.meta.unreadByAdmin||0);
+  });
+  if(total>0){
+    badge.textContent=total>99?"99+":total;
+    badge.style.display="inline-flex";
+  }else{
+    badge.style.display="none";
+  }
+}
+
+/* ============================================================
+   DADOS (substitui localStorage por Firebase)
    ============================================================ */
 function getUsers(){return _usersCache;}
 
@@ -659,7 +1038,7 @@ function escapeHtml(t){const d=document.createElement("div");d.textContent=Strin
 function showToast(message,type="success",duration=3200){const t=document.getElementById("toast");t.textContent=message;t.className="toast show "+type;clearTimeout(t._timeout);t._timeout=setTimeout(()=>t.className="toast "+type,duration)}
 
 /* ============================================================
-   TEXT-TO-SPEECH (LEITURA PERMANENTE)
+   TEXT-TO-SPEECH
    ============================================================ */
 let voiceEnabled=true;
 let isSpeaking=false;
@@ -718,7 +1097,7 @@ function speakAnswerText(el){const t=(el&&el.textContent||"").trim();if(t)speakT
 function autoReadQuestionIfEnabled(){setTimeout(()=>{if(!answered)speakCurrentQuestion()},300)}
 
 /* ============================================================
-   PAYMENT SETTINGS (agora persistidas em Firebase)
+   PAYMENT SETTINGS
    ============================================================ */
 function loadPaymentSettingsIntoForm(){const s=getPaymentSettings();document.getElementById("settingIban").value=s.iban||"";document.getElementById("settingPaypayEntity").value=s.paypayEntity||"";document.getElementById("settingPaypayRef").value=s.paypayRef||""}
 function savePaymentSettingsFromForm(){
@@ -778,7 +1157,6 @@ if(!_firebaseReady){
   return;
 }
 try{
-  // Recarrega utilizadores mais recentes para evitar duplicados
   const snap=await _db.ref("users").get();
   _usersCache=Object.values(snap.val()||{});
 }catch(e){console.error(e);}
@@ -855,13 +1233,22 @@ updateUserBar(user);
 const isAdmin=user.role==="admin";
 document.getElementById("adminPanelBtn").style.display=isAdmin?"inline-flex":"none";
 goHome();
+if(!isAdmin){
+  ensureChatMeta(user);
+  setTimeout(updateUserChatUI,300);
+}
 }
 function openAdminSession(admin){
 document.getElementById("authScreen").style.display="none";
 document.getElementById("appScreen").style.display="none";
 document.getElementById("adminScreen").style.display="block";
+// Hide user chat FAB
+const fab=document.getElementById("chatFab"); if(fab) fab.style.display="none";
+const panel=document.getElementById("userChatPanel"); if(panel) panel.classList.remove("show");
 loadPaymentSettingsIntoForm();
+switchAdminTab("users");
 renderAdminPanel();
+updateAdminChatBadge();
 }
 function updateUserBar(u,isAdmin=false){
 document.getElementById("currentUserName").textContent=u.name;
@@ -869,7 +1256,16 @@ document.getElementById("currentUserEmail").textContent=isAdmin?"Sessão adminis
 document.getElementById("userAvatar").textContent=(u.name||"U").trim().charAt(0).toUpperCase();
 document.getElementById("userAvatar").classList.toggle("admin",isAdmin);
 }
-function logout(){stopTimer();stopSpeaking();localStorage.removeItem(STORAGE_KEYS.currentUser);document.getElementById("appScreen").style.display="none";document.getElementById("adminScreen").style.display="none";document.getElementById("authScreen").style.display="block";resetAuthView();showToast("Sessão terminada com sucesso.","success")}
+function logout(){
+stopTimer();stopSpeaking();
+const panel=document.getElementById("userChatPanel"); if(panel) panel.classList.remove("show");
+const fab=document.getElementById("chatFab"); if(fab) fab.style.display="none";
+localStorage.removeItem(STORAGE_KEYS.currentUser);
+document.getElementById("appScreen").style.display="none";
+document.getElementById("adminScreen").style.display="none";
+document.getElementById("authScreen").style.display="block";
+resetAuthView();showToast("Sessão terminada com sucesso.","success")
+}
 function togglePassword(id){const i=document.getElementById(id);i.type=i.type==="password"?"text":"password"}
 
 function getSelectedBank(){return questionBanks[selectedCategory]}
@@ -992,9 +1388,6 @@ notice.innerHTML=`<div class="result-payment-box"><h3>🔒 Desbloqueie o treinam
 speakText(`Treinamento concluído. Acertou ${correctAnswers} de ${total} perguntas. Aproveitamento: ${percentage} por cento.`);
 }
 
-/* ============================================================
-   RESTART COM AVISO
-   ============================================================ */
 function restartQuiz(){
 stopSpeaking();
 const u=getCurrentUser();
@@ -1049,9 +1442,6 @@ box.innerHTML=`<div class="payment-box"><h3>💲 Desbloqueie todas as perguntas<
 }
 }
 
-/* ============================================================
-   PAGAR E ENVIAR POR EMAIL
-   ============================================================ */
 async function payAndSendEmail(){
 const u=getCurrentUser();
 if(!u||u.role==="admin")return;
@@ -1125,16 +1515,29 @@ notice.innerHTML=`<div class="result-payment-box"><h3>⏳ Pedido em análise</h3
 function updateBestScore(){const u=getCurrentUser();if(!u||u.role==="admin")return;const b=getBestScore(),el=document.getElementById("bestScore");el.textContent=b>0?`🏆 Melhor pontuação em ${selectedCategory}: ${b}/${getSelectedBank().length}`:"Ainda não existe uma pontuação registada nesta sessão."}
 
 /* ============ ADMIN PANEL ============ */
-function openAdminPanel(){const u=getCurrentUser();if(!u||u.role!=="admin")return;document.getElementById("appScreen").style.display="none";document.getElementById("adminScreen").style.display="block";loadPaymentSettingsIntoForm();renderAdminPanel()}
+function openAdminPanel(){
+const u=getCurrentUser();if(!u||u.role!=="admin")return;
+document.getElementById("appScreen").style.display="none";
+document.getElementById("adminScreen").style.display="block";
+const fab=document.getElementById("chatFab"); if(fab) fab.style.display="none";
+const panel=document.getElementById("userChatPanel"); if(panel) panel.classList.remove("show");
+loadPaymentSettingsIntoForm();
+switchAdminTab("users");
+renderAdminPanel();
+updateAdminChatBadge();
+}
 function closeAdminPanel(){
 document.getElementById("adminScreen").style.display="none";
 document.getElementById("appScreen").style.display="block";
+_currentConvUserId=null;
 goHome();
 }
 function renderAdminPanel(){
 const users=getUsers(),total=users.length,pending=users.filter(u=>u.paymentStatus==="pending").length,paid=users.filter(u=>u.paymentStatus==="paid").length,rejected=users.filter(u=>u.paymentStatus==="rejected").length,revenue=paid*PRICE_KZ;
 document.getElementById("adminStats").innerHTML=`<div class="admin-stat-card"><div class="num">${total}</div><div class="label">Utilizadores</div></div><div class="admin-stat-card"><div class="num pending">${pending}</div><div class="label">Pagamentos pendentes</div></div><div class="admin-stat-card"><div class="num approved">${paid}</div><div class="label">Acessos aprovados</div></div><div class="admin-stat-card"><div class="num" style="color:var(--danger)">${rejected}</div><div class="label">Pagamentos reprovados</div></div><div class="admin-stat-card"><div class="num revenue">${revenue.toLocaleString("pt-PT")} Kz</div><div class="label">Receita confirmada</div></div>`;
-renderUserList()
+renderUserList();
+updateAdminChatBadge();
+if(_currentConvUserId)renderAdminConversation(_currentConvUserId);
 }
 function renderUserList(){
 const users=getUsers(),search=(document.getElementById("adminSearch").value||"").trim().toLowerCase(),filter=document.getElementById("adminFilter").value;let list=users.slice().sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
@@ -1150,8 +1553,14 @@ const s=u.paymentStatus||"free";
 const label=s==="paid"?"Acesso total":s==="pending"?"Pendente":s==="rejected"?"Reprovado":"Limitado";
 const pc=s==="paid"?"paid":s==="pending"?"pending":s==="rejected"?"rejected":"free";
 const payMeta=s==="pending"&&u.paymentMethod?` · 💳 ${escapeHtml(u.paymentMethod)}${u.paymentRef?" · 🔖 "+escapeHtml(u.paymentRef):""}`:"";
-return `<div class="user-row"><div class="user-row-main"><div class="user-avatar">${escapeHtml((u.name||"U").trim().charAt(0).toUpperCase())}</div><div class="user-row-info"><div class="user-row-name">${escapeHtml(u.name)} <span class="status-pill ${pc}">${label}</span></div><div class="user-row-meta">📞 ${escapeHtml(u.phone||"—")}${u.email?" · 📧 "+escapeHtml(u.email):""} · 🕒 ${formatDate(u.createdAt)}${payMeta}</div></div></div><div class="user-row-actions">${s!=="paid"?`<button class="mini-btn approve" onclick="openPaymentModal('${u.id}')">✓ Aprovar</button>`:""}${s!=="paid"?`<button class="mini-btn reject" onclick="quickReject('${u.id}')">✗ Reprovar</button>`:""}${s==="paid"?`<button class="mini-btn revoke" onclick="revokePayment('${u.id}')">↺ Revogar</button>`:""}<button class="mini-btn delete" onclick="deleteUser('${u.id}')">🗑 Apagar</button></div></div>`
+const unreadCount=(_chatsCache[u.id]&&_chatsCache[u.id].meta)?(_chatsCache[u.id].meta.unreadByAdmin||0):0;
+const chatLabel=unreadCount>0?`💬 Chat (${unreadCount})`:"💬 Chat";
+return `<div class="user-row"><div class="user-row-main"><div class="user-avatar">${escapeHtml((u.name||"U").trim().charAt(0).toUpperCase())}</div><div class="user-row-info"><div class="user-row-name">${escapeHtml(u.name)} <span class="status-pill ${pc}">${label}</span></div><div class="user-row-meta">📞 ${escapeHtml(u.phone||"—")}${u.email?" · 📧 "+escapeHtml(u.email):""} · 🕒 ${formatDate(u.createdAt)}${payMeta}</div></div></div><div class="user-row-actions"><button class="mini-btn chat" onclick="openChatWithUser('${u.id}')">${chatLabel}</button>${s!=="paid"?`<button class="mini-btn approve" onclick="openPaymentModal('${u.id}')">✓ Aprovar</button>`:""}${s!=="paid"?`<button class="mini-btn reject" onclick="quickReject('${u.id}')">✗ Reprovar</button>`:""}${s==="paid"?`<button class="mini-btn revoke" onclick="revokePayment('${u.id}')">↺ Revogar</button>`:""}<button class="mini-btn delete" onclick="deleteUser('${u.id}')">🗑 Apagar</button></div></div>`
 }).join("")
+}
+function openChatWithUser(id){
+switchAdminTab("chat");
+selectConversation(id);
 }
 function openPaymentModal(id){
 const u=getUsers().find(x=>x.id===id);if(!u)return;
@@ -1223,12 +1632,16 @@ users[i]={...users[i],...updated};
 renderAdminPanel();showToast("Acesso revogado.","warning")
 }
 async function deleteUser(id){
-if(!confirm("Apagar definitivamente este utilizador?"))return;
+if(!confirm("Apagar definitivamente este utilizador? Isto também eliminará a sua conversa de chat."))return;
 if(_db){
-  try{ await _db.ref("users/"+id).remove(); }
+  try{
+    await _db.ref("users/"+id).remove();
+    await _db.ref("chats/"+id).remove();
+  }
   catch(e){ console.error(e); showToast("Erro ao apagar no servidor.","error"); return; }
 }
 deleteUserById(id);
+if(_currentConvUserId===id)_currentConvUserId=null;
 const current=getCurrentUser();
 if(current&&current.id===id)return logout();
 renderAdminPanel();showToast("Utilizador apagado.","error")
@@ -1273,7 +1686,7 @@ async function bootApp(){
 }
 bootApp();
 
-/* Expõe funções para handlers inline (onclick/onsubmit) */
+/* Expõe funções globais */
 window.login=login;
 window.register=register;
 window.logout=logout;
@@ -1304,6 +1717,13 @@ window.payAndSendEmail=payAndSendEmail;
 window.closeRestartModal=closeRestartModal;
 window.confirmRestart=confirmRestart;
 window.closeRegisterSuccessModal=closeRegisterSuccessModal;
+/* chat */
+window.toggleUserChat=toggleUserChat;
+window.sendUserChatMessage=sendUserChatMessage;
+window.switchAdminTab=switchAdminTab;
+window.selectConversation=selectConversation;
+window.sendAdminChatMessage=sendAdminChatMessage;
+window.openChatWithUser=openChatWithUser;
 </script>
 </body>
 </html>
