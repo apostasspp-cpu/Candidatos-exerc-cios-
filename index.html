@@ -111,6 +111,15 @@ input::placeholder{color:var(--muted);opacity:.75}input:focus,select:focus{borde
 .fb-loading .spinner{width:44px;height:44px;border:4px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
+/* ================= SESSION SWITCHER (QUIZ / RESULT) ================= */
+.quiz-session-switch{display:flex;gap:8px;margin-bottom:20px;background:var(--answer-bg);border:1px solid var(--border);border-radius:var(--radius-md);padding:6px;flex-wrap:wrap}
+.session-tab{flex:1;min-width:150px;padding:11px 14px;border-radius:var(--radius-sm);font-weight:700;font-size:.82rem;color:var(--text-soft);background:transparent;transition:.18s;display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;border:1.5px solid transparent}
+.session-tab:hover:not(.active){background:var(--answer-hover);color:var(--primary)}
+.session-tab.active{background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(11,93,59,.25);border-color:var(--primary)}
+.session-tab .lock-tag{font-size:.65rem;background:rgba(0,0,0,.15);padding:1px 6px;border-radius:10px;font-weight:800}
+.session-tab.active .lock-tag{background:rgba(255,255,255,.25)}
+.session-hint{font-size:.78rem;color:var(--muted);text-align:center;margin:-10px 0 18px;line-height:1.4}
+
 /* ================= CHAT ================= */
 .chat-fab{position:fixed;bottom:24px;right:24px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;font-size:26px;display:none;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(11,93,59,.4);z-index:1500;transition:.2s;border:3px solid var(--card);line-height:1}
 .chat-fab:hover{transform:scale(1.08)}
@@ -127,11 +136,16 @@ input::placeholder{color:var(--muted);opacity:.75}input:focus,select:focus{borde
 .chat-close:hover{background:rgba(255,255,255,.15)}
 .chat-messages{flex:1;overflow-y:auto;padding:16px;background:var(--bg);display:flex;flex-direction:column;gap:10px}
 .chat-empty{text-align:center;color:var(--muted);padding:30px 20px;font-size:.85rem;line-height:1.6}
-.chat-msg{max-width:82%;padding:9px 13px;border-radius:14px;font-size:.88rem;line-height:1.4;word-wrap:break-word;white-space:pre-wrap;position:relative;animation:chatIn .2s ease}
+.chat-msg{max-width:82%;padding:9px 13px;padding-right:30px;border-radius:14px;font-size:.88rem;line-height:1.4;word-wrap:break-word;white-space:pre-wrap;position:relative;animation:chatIn .2s ease}
 @keyframes chatIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .chat-msg.out{align-self:flex-end;background:var(--primary);color:#fff;border-bottom-right-radius:4px}
 .chat-msg.in{align-self:flex-start;background:var(--card);color:var(--text);border:1px solid var(--border);border-bottom-left-radius:4px}
 .chat-msg-time{font-size:.62rem;opacity:.75;margin-top:4px;display:block;text-align:right}
+.chat-msg-del{position:absolute;top:4px;right:4px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.62rem;line-height:1;padding:0;opacity:.45;transition:.15s;background:rgba(0,0,0,.12);color:inherit;font-weight:800;cursor:pointer}
+.chat-msg-del:hover{opacity:1;background:var(--danger);color:#fff;transform:scale(1.1)}
+.chat-msg.out .chat-msg-del{background:rgba(255,255,255,.28);color:#fff}
+.chat-msg.out .chat-msg-del:hover{background:var(--danger);color:#fff}
+.chat-msg.deleting{opacity:.35;pointer-events:none;transition:.2s}
 .chat-input-area{display:flex;gap:8px;padding:12px;border-top:1px solid var(--border);background:var(--card);flex-shrink:0;align-items:flex-end}
 .chat-input-area textarea{flex:1;resize:none;padding:10px 14px;border:1.5px solid var(--border);border-radius:20px;background:var(--answer-bg);color:var(--text);font-size:.88rem;font-family:inherit;outline:none;max-height:90px;min-height:40px;line-height:1.4}
 .chat-input-area textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(11,93,59,.12)}
@@ -170,6 +184,7 @@ input::placeholder{color:var(--muted);opacity:.75}input:focus,select:focus{borde
 @media(max-width:560px){.container{margin:18px auto;padding:0 12px 40px}.card{padding:24px 18px;border-radius:var(--radius-md)}.auth-card{margin:18px auto}.top-info{grid-template-columns:1fr auto;gap:10px}.timer{grid-column:1/-1;justify-self:stretch}.question{font-size:1.1rem}.result-stats{grid-template-columns:1fr}.final-score{font-size:2.4rem}.user-bar{padding:11px 14px}.user-row{flex-direction:column;align-items:stretch}.user-row-actions{justify-content:flex-start}.category-box{grid-template-columns:1fr}.toast{left:16px;right:16px;bottom:96px;max-width:none}.modal{padding:20px}.modal-actions{flex-direction:column}
 .chat-panel{right:12px;left:12px;bottom:90px;width:auto;height:calc(100vh - 120px);max-height:none}
 .chat-fab{bottom:18px;right:18px;width:54px;height:54px;font-size:22px}
+.session-tab{min-width:0;font-size:.76rem;padding:9px 10px}
 }
 </style>
 </head>
@@ -231,6 +246,13 @@ input::placeholder{color:var(--muted);opacity:.75}input:focus,select:focus{borde
 </div>
 
 <div id="quizScreen" class="card" style="display:none">
+<!-- ==== Switcher de sessão dentro do exercício ==== -->
+<div class="quiz-session-switch" id="quizSessionSwitch">
+<button class="session-tab" data-cat="police" onclick="switchQuizCategory('police')">👮 Polícia Nacional</button>
+<button class="session-tab" data-cat="culture" onclick="switchQuizCategory('culture')">🇦🇴 Cultura Geral de Angola</button>
+</div>
+<div class="session-hint" id="quizSessionHint"></div>
+
 <div class="top-info"><div class="progress-text" id="progressText">Pergunta 1</div><div class="score">Pontuação: <span id="score">0</span></div><div class="timer" id="timer">⏱️ 90s</div></div>
 <div class="progress-bar"><div class="progress" id="progress"></div></div>
 <div class="question-header">
@@ -251,6 +273,14 @@ input::placeholder{color:var(--muted);opacity:.75}input:focus,select:focus{borde
 <div class="final-score"><span id="finalScore">0</span><span style="color:var(--muted);font-weight:400;font-size:.5em"> / </span><span id="totalQuestions">0</span></div>
 <div class="result-stats"><div class="stat"><strong id="percentage">0%</strong>Aproveitamento</div><div class="stat"><strong id="correctCount">0</strong>Correctas</div><div class="stat"><strong id="wrongCount">0</strong>Incorrectas</div></div>
 <p class="result-message" id="resultMessage"></p><div id="resultPaymentNotice"></div>
+
+<!-- ==== Switcher de sessão no ecrã de resultado ==== -->
+<div class="quiz-session-switch" id="resultSessionSwitch" style="margin-top:24px">
+<button class="session-tab" data-cat="police" onclick="switchQuizCategory('police')">👮 Polícia Nacional</button>
+<button class="session-tab" data-cat="culture" onclick="switchQuizCategory('culture')">🇦🇴 Cultura Geral de Angola</button>
+</div>
+<div class="session-hint">Escolha outra sessão para treinar imediatamente.</div>
+
 <button class="restart-btn" onclick="restartQuiz()">🔄 Repetir as 13 perguntas gratuitas</button><button class="home-btn" onclick="goHome()">🏠 VOLTAR AO INÍCIO</button>
 </div>
 </div>
@@ -643,7 +673,6 @@ async function initFirebase(){
       onSettingsChanged();
     },err=>console.error("Listener settings erro:",err));
 
-    // Chat listener
     _db.ref("chats").on("value",snap=>{
       _chatsCache=snap.val()||{};
       onChatsChanged();
@@ -759,6 +788,41 @@ async function sendChatMessage(userId,from,text){
   }
 }
 
+/* ==== APAGAR MENSAGEM INDIVIDUAL ==== */
+async function deleteChatMessage(userId,msgId){
+  if(!_db)return;
+  if(!confirm("Apagar esta mensagem? Esta acção não pode ser desfeita."))return;
+  try{
+    // Optimistic UI: mark as deleting
+    const el=document.querySelector('.chat-msg-del[data-mid="'+msgId+'"]');
+    if(el){const p=el.closest(".chat-msg");if(p)p.classList.add("deleting");}
+
+    await _db.ref("chats/"+userId+"/messages/"+msgId).remove();
+
+    // Recalc last message
+    const chat=_chatsCache[userId];
+    const remaining=chat&&chat.messages
+      ? Object.entries(chat.messages)
+          .filter(([k])=>k!==msgId)
+          .map(([,m])=>m)
+          .sort((a,b)=>b.timestamp-a.timestamp)
+      : [];
+    const updates={};
+    if(remaining.length){
+      updates.lastMessage=(remaining[0].text||"").slice(0,80);
+      updates.lastTimestamp=remaining[0].timestamp;
+    }else{
+      updates.lastMessage="";
+      updates.lastTimestamp=Date.now();
+    }
+    try{ await _db.ref("chats/"+userId+"/meta").update(updates); }catch(e){}
+    showToast("Mensagem apagada.","success",2200);
+  }catch(e){
+    console.error(e);
+    showToast("Erro ao apagar mensagem.","error");
+  }
+}
+
 /* ---- USER SIDE ---- */
 function toggleUserChat(){
   const p=document.getElementById("userChatPanel");
@@ -794,14 +858,16 @@ function renderUserChatMessages(){
   const box=document.getElementById("userChatMessages");
   if(!box)return;
   const chat=_chatsCache[u.id];
-  const messages=chat&&chat.messages?Object.values(chat.messages).sort((a,b)=>a.timestamp-b.timestamp):[];
-  if(!messages.length){
+  const entries=chat&&chat.messages
+    ? Object.entries(chat.messages).sort((a,b)=>(a[1].timestamp||0)-(b[1].timestamp||0))
+    : [];
+  if(!entries.length){
     box.innerHTML=`<div class="chat-empty">👋 Olá! Bem-vindo ao suporte.<br>Envie a sua primeira mensagem e a nossa equipa responderá em breve.</div>`;
     return;
   }
-  box.innerHTML=messages.map(m=>{
+  box.innerHTML=entries.map(([id,m])=>{
     const cls=m.from==="user"?"out":"in";
-    return `<div class="chat-msg ${cls}">${escapeHtml(m.text)}<span class="chat-msg-time">${formatChatTime(m.timestamp)}</span></div>`;
+    return `<div class="chat-msg ${cls}">${escapeHtml(m.text)}<button class="chat-msg-del" data-mid="${escapeHtml(id)}" onclick="deleteChatMessage('${u.id}','${id}')" title="Apagar esta mensagem">✕</button><span class="chat-msg-time">${formatChatTime(m.timestamp)}</span></div>`;
   }).join("");
   box.scrollTop=box.scrollHeight;
 }
@@ -911,12 +977,13 @@ function renderAdminConversation(uid){
     return;
   }
   const meta=chat.meta||{};
-  const messages=chat.messages?Object.values(chat.messages).sort((a,b)=>a.timestamp-b.timestamp):[];
-  const msgHtml=messages.length
-    ? messages.map(m=>{
-        // Perspective flip: from admin POV, user msgs are incoming (in), admin msgs outgoing (out)
+  const entries=chat.messages
+    ? Object.entries(chat.messages).sort((a,b)=>(a[1].timestamp||0)-(b[1].timestamp||0))
+    : [];
+  const msgHtml=entries.length
+    ? entries.map(([id,m])=>{
         const cls=m.from==="admin"?"out":"in";
-        return `<div class="chat-msg ${cls}">${escapeHtml(m.text)}<span class="chat-msg-time">${formatChatTime(m.timestamp)}</span></div>`;
+        return `<div class="chat-msg ${cls}">${escapeHtml(m.text)}<button class="chat-msg-del" data-mid="${escapeHtml(id)}" onclick="deleteChatMessage('${uid}','${id}')" title="Apagar esta mensagem">✕</button><span class="chat-msg-time">${formatChatTime(m.timestamp)}</span></div>`;
       }).join("")
     : `<div class="chat-empty">Sem mensagens nesta conversa.</div>`;
   const initial=(meta.userName||"U").trim().charAt(0).toUpperCase();
@@ -969,7 +1036,7 @@ function updateAdminChatBadge(){
 }
 
 /* ============================================================
-   DADOS (substitui localStorage por Firebase)
+   DADOS
    ============================================================ */
 function getUsers(){return _usersCache;}
 
@@ -1097,6 +1164,39 @@ function speakAnswerText(el){const t=(el&&el.textContent||"").trim();if(t)speakT
 function autoReadQuestionIfEnabled(){setTimeout(()=>{if(!answered)speakCurrentQuestion()},300)}
 
 /* ============================================================
+   SESSIONS SWITCHER (nova funcionalidade)
+   ============================================================ */
+function updateSessionTabs(){
+  document.querySelectorAll(".session-tab").forEach(el=>{
+    const cat=el.getAttribute("data-cat");
+    el.classList.toggle("active", cat===selectedCategory);
+  });
+  const hint=document.getElementById("quizSessionHint");
+  if(hint){
+    const u=getCurrentUser();
+    if(u&&!hasFullAccess(u)&&u.role!=="admin"){
+      hint.textContent="Acesso gratuito: ambas as sessões mostram as mesmas 13 perguntas fixas misturadas (7 Polícia + 6 Cultura).";
+    }else{
+      const bank=questionBanks[selectedCategory];
+      hint.textContent=`Sessão actual: ${bank.category} — ${bank.length} perguntas disponíveis.`;
+    }
+  }
+}
+
+function switchQuizCategory(cat){
+  if(cat===selectedCategory) return;
+  const inQuiz=document.getElementById("quizScreen").style.display!=="none";
+  const inResult=document.getElementById("resultScreen").style.display!=="none";
+  if((inQuiz||inResult)&&!confirm("Mudar de sessão irá iniciar uma nova ronda de treinamento. Deseja continuar?"))return;
+  selectedCategory=cat;
+  document.getElementById("catPolice").classList.toggle("active",cat==="police");
+  document.getElementById("catCulture").classList.toggle("active",cat==="culture");
+  updateSessionTabs();
+  updateBestScore();
+  startQuiz();
+}
+
+/* ============================================================
    PAYMENT SETTINGS
    ============================================================ */
 function loadPaymentSettingsIntoForm(){const s=getPaymentSettings();document.getElementById("settingIban").value=s.iban||"";document.getElementById("settingPaypayEntity").value=s.paypayEntity||"";document.getElementById("settingPaypayRef").value=s.paypayRef||""}
@@ -1114,6 +1214,7 @@ function selectCategory(category){
 selectedCategory=category;
 document.getElementById("catPolice").classList.toggle("active",category==="police");
 document.getElementById("catCulture").classList.toggle("active",category==="culture");
+updateSessionTabs();
 updateBestScore();
 }
 
@@ -1242,7 +1343,6 @@ function openAdminSession(admin){
 document.getElementById("authScreen").style.display="none";
 document.getElementById("appScreen").style.display="none";
 document.getElementById("adminScreen").style.display="block";
-// Hide user chat FAB
 const fab=document.getElementById("chatFab"); if(fab) fab.style.display="none";
 const panel=document.getElementById("userChatPanel"); if(panel) panel.classList.remove("show");
 loadPaymentSettingsIntoForm();
@@ -1284,6 +1384,7 @@ document.getElementById("startScreen").style.display="none";
 document.getElementById("resultScreen").style.display="none";
 document.getElementById("quizScreen").style.display="block";
 document.getElementById("score").textContent="0";
+updateSessionTabs();
 showQuestion();
 }
 function showQuestion(){
@@ -1426,6 +1527,7 @@ const box=document.getElementById("paymentBoxContainer");box.innerHTML="";
 const s=getPaymentSettings();
 if(full){
 box.innerHTML=`<div class="payment-approved">✅ Pagamento aprovado. Aproveite o treinamento completo com todas as perguntas!</div>`;
+updateSessionTabs();
 return;
 }
 let payInfo="";
@@ -1440,6 +1542,7 @@ box.innerHTML=`<div class="payment-box" style="border-color:var(--danger);backgr
 }else{
 box.innerHTML=`<div class="payment-box"><h3>💲 Desbloqueie todas as perguntas</h3><p>Você tem acesso gratuito a <strong>13 perguntas fixas</strong> (7 Polícia + 6 Cultura). Para acessar as <strong>${totalBankLen} perguntas</strong> disponíveis, efectue o pagamento único de:</p><div class="payment-price">${PRICE_KZ} <small>Kz</small></div>${payInfo}<button class="pay-email-btn" onclick="payAndSendEmail()">💳 PAGAR E ENVIAR COMPROVATIVO POR EMAIL</button></div>`;
 }
+updateSessionTabs();
 }
 
 async function payAndSendEmail(){
@@ -1512,7 +1615,7 @@ if(s.paypayRef)payInfo+=`<div class="payment-contact">🔖 Referência PayPay: <
 payInfo+=`<div class="payment-contact">📧 Email para comprovativo: <strong>${PROOF_EMAIL}</strong></div>`;
 notice.innerHTML=`<div class="result-payment-box"><h3>⏳ Pedido em análise</h3><p>O seu pedido foi registado e está a aguardar aprovação do administrador. Assim que o pagamento for confirmado, todas as <strong>${totalBankLen}</strong> perguntas serão desbloqueadas.</p>${payInfo}<button class="pay-email-btn pending" onclick="payAndSendEmail()">📧 PAGAR E ENVIAR COMPROVATIVO POR EMAIL</button></div>`;
 }
-function updateBestScore(){const u=getCurrentUser();if(!u||u.role==="admin")return;const b=getBestScore(),el=document.getElementById("bestScore");el.textContent=b>0?`🏆 Melhor pontuação em ${selectedCategory}: ${b}/${getSelectedBank().length}`:"Ainda não existe uma pontuação registada nesta sessão."}
+function updateBestScore(){const u=getCurrentUser();if(!u||u.role==="admin")return;const b=getBestScore(),el=document.getElementById("bestScore");if(!el)return;el.textContent=b>0?`🏆 Melhor pontuação em ${selectedCategory}: ${b}/${getSelectedBank().length}`:"Ainda não existe uma pontuação registada nesta sessão."}
 
 /* ============ ADMIN PANEL ============ */
 function openAdminPanel(){
@@ -1661,6 +1764,7 @@ async function bootApp(){
   localStorage.setItem(STORAGE_KEYS.voiceEnabled,"true");
   updateVoiceToggleUI();
   resetAuthView();
+  updateSessionTabs();
 
   const loading=document.getElementById("fbLoading");
   loading.classList.add("show");
@@ -1724,6 +1828,9 @@ window.switchAdminTab=switchAdminTab;
 window.selectConversation=selectConversation;
 window.sendAdminChatMessage=sendAdminChatMessage;
 window.openChatWithUser=openChatWithUser;
+/* novas */
+window.switchQuizCategory=switchQuizCategory;
+window.deleteChatMessage=deleteChatMessage;
 </script>
 </body>
 </html>
