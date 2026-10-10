@@ -101,7 +101,7 @@ header{
 .brand h1{font-size:.95rem;font-weight:800;line-height:1.25;letter-spacing:.2px;text-transform:uppercase}
 .brand p{font-size:.7rem;color:var(--muted);margin-top:2px;letter-spacing:.3px;text-transform:uppercase}
 
-.header-controls{display:flex;gap:6px;flex-shrink:0}
+.header-controls{display:flex;gap:6px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end}
 .header-controls button{
   border:1px solid var(--border);background:var(--card);color:var(--text-soft);
   border-radius:var(--radius-sm);padding:8px 11px;font-weight:700;font-size:.85rem;
@@ -115,6 +115,29 @@ header{
   box-shadow:0 0 0 3px rgba(229,57,53,.22);
 }
 .header-controls button.voice-toggle.locked{cursor:not-allowed;opacity:.92}
+
+/* Auto-read toggle button */
+.header-controls button.auto-read-toggle{
+  font-size:.78rem;
+  padding:8px 12px;
+  white-space:nowrap;
+}
+.header-controls button.auto-read-toggle.active{
+  background:linear-gradient(135deg,var(--success),#1b5e20);
+  color:#fff;border-color:var(--success);
+  box-shadow:0 0 0 3px rgba(46,125,50,.25);
+}
+.header-controls button.auto-read-toggle.active:hover{
+  background:#1b5e20;border-color:#1b5e20;
+}
+.header-controls button.auto-read-toggle:not(.active){
+  background:var(--answer-bg);
+  color:var(--muted);
+  border-color:var(--border-strong);
+}
+.header-controls button.auto-read-toggle:not(.active):hover{
+  background:var(--warning);color:#fff;border-color:var(--warning);
+}
 
 /* ============================================================
    LAYOUT
@@ -338,6 +361,55 @@ body.dark .payment-approved{color:#81c784}
   margin-bottom:18px;
   border-bottom:1px solid var(--border);
   padding-bottom:18px;
+}
+
+/* Quiz toolbar (auto-read toggle inside quiz) */
+.quiz-toolbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-top:10px;
+  flex-wrap:wrap;
+}
+.quiz-toolbar .auto-read-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:8px 14px;
+  border-radius:20px;
+  font-weight:800;
+  font-size:.78rem;
+  letter-spacing:.3px;
+  transition:.2s;
+  border:1.5px solid var(--border-strong);
+  background:var(--card);
+  color:var(--text-soft);
+  white-space:nowrap;
+}
+.quiz-toolbar .auto-read-btn:hover{transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+.quiz-toolbar .auto-read-btn.on{
+  background:linear-gradient(135deg,var(--success),#1b5e20);
+  color:#fff;border-color:var(--success);
+  box-shadow:0 2px 8px rgba(46,125,50,.30);
+}
+.quiz-toolbar .auto-read-btn.on:hover{background:#1b5e20}
+.quiz-toolbar .auto-read-btn.off{
+  background:var(--answer-bg);
+  color:var(--muted);
+}
+.quiz-toolbar .auto-read-btn.off:hover{
+  background:var(--warning);color:#fff;border-color:var(--warning);
+}
+.quiz-toolbar .auto-read-btn .state-pill{
+  font-size:.62rem;
+  padding:2px 7px;
+  border-radius:10px;
+  background:rgba(255,255,255,.28);
+  font-weight:800;
+}
+.quiz-toolbar .auto-read-btn.off .state-pill{
+  background:rgba(0,0,0,.08);
 }
 
 .top-info{display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;margin-bottom:14px}
@@ -844,7 +916,8 @@ body.dark .result-payment-box .remaining{color:var(--accent)}
   .brand h1{font-size:.8rem}
   .brand p{font-size:.62rem}
   .brand-emblem{width:38px;height:38px;font-size:18px}
-  .header-controls button{padding:7px 9px;font-size:.8rem}
+  .header-controls button{padding:7px 9px;font-size:.78rem}
+  .header-controls button.auto-read-toggle{font-size:.72rem;padding:7px 10px}
   .card{padding:26px 20px}
 }
 
@@ -874,11 +947,14 @@ body.dark .result-payment-box .remaining{color:var(--accent)}
   .admin-header{flex-direction:column;align-items:flex-start}
   .admin-header-actions{width:100%}
   .admin-header-actions button{flex:1}
+  .quiz-toolbar{flex-direction:column;align-items:stretch}
+  .quiz-toolbar .auto-read-btn{justify-content:center;width:100%}
 }
 
 @media(max-width:360px){
   .session-tab{font-size:.68rem;padding:8px 6px}
   .question{font-size:1rem}
+  .header-controls button.auto-read-toggle{font-size:.66rem;padding:6px 8px}
 }
 </style>
 </head>
@@ -890,11 +966,13 @@ body.dark .result-payment-box .remaining{color:var(--accent)}
     <div class="brand">
       <div class="brand-emblem">🛡️</div>
       <div class="brand-text">
-        <h1>Treinamento — Ministério do Interior</h1>
-        <p>República de Angola · Exercícios para candidatos</p>
+        <h1>Treinamento</h1>
+        <p> Angola · Exercícios para candidatos</p>
       </div>
     </div>
     <div class="header-controls">
+      <!-- NOVO: Botão de leitura automática (toggle) -->
+      <button id="autoReadToggle" class="auto-read-toggle active" onclick="toggleAutoRead()" title="Leitura automática activada — clique para desactivar">🔊 Auto</button>
       <button id="voiceToggle" class="voice-toggle" onclick="toggleVoice()" title="Leitura de voz">🔊</button>
       <button onclick="toggleDarkMode()" title="Modo escuro / claro">🌙</button>
       <button onclick="changeFontSize(0.08)" title="Aumentar letra">A+</button>
@@ -1017,7 +1095,6 @@ body.dark .result-payment-box .remaining{color:var(--accent)}
 
         <div id="accessBadgeContainer"></div>
 
-        <!-- Session switcher (start) -->
         <div class="quiz-session-switch" id="startSessionSwitch">
           <button class="session-tab active" data-cat="police" onclick="switchQuizCategory('police')">👮 Polícia Nacional</button>
           <button class="session-tab" data-cat="culture" onclick="switchQuizCategory('culture')">🇦🇴 Cultura Geral de Angola</button>
@@ -1052,7 +1129,7 @@ body.dark .result-payment-box .remaining{color:var(--accent)}
             <li>Receberá feedback imediatamente.</li>
             <li>Existe um cronómetro de 1 minuto e 30 segundos por pergunta.</li>
             <li>O acesso gratuito contém 13 perguntas fixas; o acesso pago desbloqueia todas.</li>
-            <li>A leitura de voz está permanentemente activa para ouvir perguntas e respostas.</li>
+            <li>Pode optar por leitura automática ou ouvir manualmente cada pergunta e resposta.</li>
             <li>O comprovativo de pagamento é enviado por email.</li>
             <li>A melhor pontuação fica guardada neste dispositivo.</li>
           </ul>
@@ -1074,12 +1151,21 @@ body.dark .result-payment-box .remaining{color:var(--accent)}
     <!-- ECRÃ DO QUIZ -->
     <div class="card" id="quizScreen" style="display:none">
 
-      <!-- SESSION SWITCHER NO QUIZ -->
       <div class="quiz-switch-wrap">
         <div class="quiz-session-switch" style="margin-bottom:0">
           <button class="session-tab active" data-cat="police" onclick="switchQuizCategory('police')">👮 Polícia Nacional</button>
           <button class="session-tab" data-cat="culture" onclick="switchQuizCategory('culture')">🇦🇴 Cultura Geral de Angola</button>
         </div>
+
+        <!-- Barra de ferramentas do quiz: toggle de leitura automática -->
+        <div class="quiz-toolbar">
+          <button id="quizAutoReadBtn" class="auto-read-btn on" onclick="toggleAutoRead()" title="Ler perguntas automaticamente">
+            <span id="quizAutoReadIcon">🔊</span>
+            <span>Leitura automática</span>
+            <span class="state-pill" id="quizAutoReadState">LIGADA</span>
+          </button>
+        </div>
+
         <p class="session-hint" id="quizActiveHint" style="margin:8px 0 0"></p>
       </div>
 
@@ -1347,7 +1433,8 @@ const STORAGE_KEYS = {
   currentUser: "treinamento_current_user",
   darkMode: "treinamento_dark_mode",
   fontScale: "treinamento_font_scale",
-  voiceEnabled: "treinamento_voice_enabled"
+  voiceEnabled: "treinamento_voice_enabled",
+  autoRead: "treinamento_auto_read"
 };
 
 /* ============================================================
@@ -1588,6 +1675,75 @@ let selectedCategory = "police",
     timerInterval = null,
     answered = false,
     pendingPaymentUserId = null;
+
+/* ============================================================
+   LEITURA AUTOMÁTICA (NOVO)
+   ============================================================ */
+let autoReadEnabled = true; /* Por omissão: leitura automática ligada */
+
+function loadAutoRead(){
+  const saved = localStorage.getItem(STORAGE_KEYS.autoRead);
+  if(saved !== null){
+    autoReadEnabled = saved === "true";
+  }else{
+    autoReadEnabled = true;
+    localStorage.setItem(STORAGE_KEYS.autoRead, "true");
+  }
+}
+
+function persistAutoRead(){
+  localStorage.setItem(STORAGE_KEYS.autoRead, autoReadEnabled ? "true" : "false");
+}
+
+function toggleAutoRead(){
+  autoReadEnabled = !autoReadEnabled;
+  persistAutoRead();
+  updateAutoReadUI();
+
+  if(autoReadEnabled){
+    showToast("🔊 Leitura automática activada — as perguntas serão lidas em voz alta.", "success", 2600);
+    /* Se estivermos numa pergunta ainda não respondida, começa já a ler */
+    if(quizQuestions.length && !answered &&
+       document.getElementById("quizScreen").style.display !== "none"){
+      setTimeout(()=>{ if(!answered) speakCurrentQuestion(); }, 250);
+    }
+  }else{
+    showToast("🔇 Leitura automática desactivada — pode tocar em 🔊 para ouvir quando quiser.", "warning", 3200);
+    stopSpeaking();
+  }
+}
+
+function updateAutoReadUI(){
+  /* Botão no cabeçalho */
+  const headerBtn = document.getElementById("autoReadToggle");
+  if(headerBtn){
+    if(autoReadEnabled){
+      headerBtn.classList.add("active");
+      headerBtn.textContent = "🔊 Auto";
+      headerBtn.title = "Leitura automática activada — clique para desactivar";
+    }else{
+      headerBtn.classList.remove("active");
+      headerBtn.textContent = "🔇 Auto";
+      headerBtn.title = "Leitura automática desactivada — clique para activar";
+    }
+  }
+
+  /* Botão dentro do quiz */
+  const quizBtn = document.getElementById("quizAutoReadBtn");
+  if(quizBtn){
+    quizBtn.classList.toggle("on", autoReadEnabled);
+    quizBtn.classList.toggle("off", !autoReadEnabled);
+    const icon = document.getElementById("quizAutoReadIcon");
+    const state = document.getElementById("quizAutoReadState");
+    if(icon) icon.textContent = autoReadEnabled ? "🔊" : "🔇";
+    if(state) state.textContent = autoReadEnabled ? "LIGADA" : "DESLIGADA";
+  }
+}
+
+function autoReadQuestionIfEnabled(){
+  if(!autoReadEnabled) return;
+  setTimeout(()=>{ if(!answered) speakCurrentQuestion(); }, 300);
+}
 
 /* ============================================================
    FIREBASE
@@ -2127,7 +2283,7 @@ function updateSpeakingUI(){
 }
 
 function toggleVoice(){
-  showToast("🔊 A leitura de voz está activa permanentemente nesta aplicação.","warning",3200);
+  showToast("🔊 O botão de voz manual continua sempre disponível. Use o botão 'Auto' para controlar a leitura automática.","warning",4200);
   voiceEnabled = true;
   localStorage.setItem(STORAGE_KEYS.voiceEnabled,"true");
   updateVoiceToggleUI();
@@ -2138,7 +2294,7 @@ function updateVoiceToggleUI(){
   if(!b) return;
   b.classList.add("active","locked");
   b.textContent = "🔊";
-  b.title = "Leitura de voz permanente activada";
+  b.title = "Leitura de voz manual disponível";
 }
 
 function speakCurrentQuestion(){
@@ -2161,10 +2317,6 @@ function speakAnswerText(el){
   if(t) speakText(t);
 }
 
-function autoReadQuestionIfEnabled(){
-  setTimeout(()=>{ if(!answered) speakCurrentQuestion(); }, 300);
-}
-
 /* ============================================================
    SESSION SWITCHER
    ============================================================ */
@@ -2183,7 +2335,6 @@ function updateSessionTabs(){
       hint.textContent = `Sessão actual: ${bank.category} — ${bank.length} perguntas disponíveis.`;
     }
   }
-  // Update hint on quiz page
   const activeHint = document.getElementById("quizActiveHint");
   if(activeHint){
     const bank = questionBanks[selectedCategory];
@@ -2193,7 +2344,6 @@ function updateSessionTabs(){
 
 function switchQuizCategory(cat){
   if(cat === selectedCategory){
-    // Even if same, ensure the quiz restarts if user clicked while in quiz
     return;
   }
   const inQuiz = document.getElementById("quizScreen").style.display !== "none";
@@ -2482,6 +2632,7 @@ function startQuiz(){
   document.getElementById("score").textContent = "0";
 
   updateSessionTabs();
+  updateAutoReadUI();
   showQuestion();
 }
 
@@ -2532,6 +2683,7 @@ function showQuestion(){
   updateTimer();
   startTimer();
   updateSpeakingUI();
+  /* Só lê automaticamente se o utilizador tiver activado a leitura automática */
   autoReadQuestionIfEnabled();
 }
 
@@ -3159,10 +3311,12 @@ function loadFontSize(){
 async function bootApp(){
   loadDarkMode();
   loadFontSize();
+  loadAutoRead(); /* Carrega preferência de leitura automática */
 
   voiceEnabled = true;
   localStorage.setItem(STORAGE_KEYS.voiceEnabled, "true");
   updateVoiceToggleUI();
+  updateAutoReadUI(); /* Actualiza o estado visual do botão Auto */
 
   resetAuthView();
   updateSessionTabs();
@@ -3240,6 +3394,8 @@ window.openChatWithUser = openChatWithUser;
 /* extras */
 window.switchQuizCategory = switchQuizCategory;
 window.deleteChatMessage = deleteChatMessage;
+/* novo: leitura automática */
+window.toggleAutoRead = toggleAutoRead;
 </script>
 </body>
 </html>
